@@ -1,4 +1,5 @@
 import warnings
+
 warnings.filterwarnings("ignore")
 
 import matplotlib
@@ -7,8 +8,9 @@ import numpy as np
 
 plt.ion()
 
+
 def pltpause(interval):
-    backend = plt.rcParams['backend']
+    backend = plt.rcParams["backend"]
     if backend in matplotlib.rcsetup.interactive_bk:
         figManager = matplotlib._pylab_helpers.Gcf.get_active()
         if figManager is not None:
@@ -17,6 +19,7 @@ def pltpause(interval):
                 canvas.draw()
             canvas.start_event_loop(interval)
             return
+
 
 class Visualizer:
     def __init__(self, formatter=str):
@@ -60,7 +63,7 @@ class Visualizer:
             self._ax = plt.gca()
             self._fig = plt.gcf()
             plt.xlabel("Time (s)")
-            self._fig.canvas.set_window_title("lcm-mon :view")
+            self._fig.canvas.manager.set_window_title("lcm-mon :view")
         self._ax.relim()
         self._ax.autoscale_view()
         pltpause(0.01)
